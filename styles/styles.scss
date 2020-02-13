@@ -1,0 +1,23 @@
+body {
+    height: 100%;
+
+    header {
+        h1 {
+        }
+    }
+    
+    main {
+        height: 100%;
+    
+        .content {
+            height: 75%;
+            top: 0;
+        }
+    
+        .console {
+            height: 25%;
+            bottom: 0;
+        }
+    }
+
+}
