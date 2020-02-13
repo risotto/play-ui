@@ -38,7 +38,7 @@ const Home: NextPage<{ userAgent: string }> = () => {
             axios
               .request<APIResponse>({
                 method: "POST",
-                url: "http://localhost:4000/compile",
+                url: "http://51.145.6.206/compile",
                 data: code
               })
               .then(response => {
