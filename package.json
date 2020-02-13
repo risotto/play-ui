@@ -1,0 +1,25 @@
+{
+  "name": "risotto-play-ui",
+  "version": "1.0.0",
+  "description": "User interface for the Risotto code playground",
+  "main": "index.js",
+  "repository": "github.com/jamesjarvis/risotto-play-ui",
+  "author": "James Jarvis <git@jamesjarvis.io>",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^9.2.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.1",
+    "@types/react": "^16.9.19",
+    "typescript": "^3.7.5"
+  }
+}
