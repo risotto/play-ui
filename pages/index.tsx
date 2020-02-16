@@ -11,6 +11,8 @@ const helloworld = `
 println("Hello, world!")
 `;
 
+const URL = "https://api.play.risotto.dev";
+
 interface ServerResponse {
   data: APIResponse;
 }
@@ -38,7 +40,7 @@ const Home: NextPage<{ userAgent: string }> = () => {
             axios
               .request<APIResponse>({
                 method: "POST",
-                url: "http://51.145.6.206/compile",
+                url: `${URL}/compile`,
                 data: code
               })
               .then(response => {
