@@ -1,17 +1,21 @@
-import "../styles/styles.scss";
+import style from "../styles/styles.scss";
 import { NextPage } from "next";
 import React, { useState } from "react";
-import Editor from "react-simple-code-editor";
-import Prism, { highlight } from "prismjs";
-// import { Button } from "semantic-ui-react";
 import axios from "axios";
-// import "semantic-ui-css/semantic.min.css";
 
-const helloworld = `
-println("Hello, world!")
-`;
+const helloworld = 'println("Hello, world!")\n';
 
 const URL = "https://api.play.risotto.dev";
+
+function AceEditor<P>(props: P) {
+  if (typeof window !== 'undefined') {
+    const Ace = require('react-ace').default;
+    require('ace-builds/src-noconflict/mode-golang');
+    require('ace-builds/src-noconflict/theme-monokai');
+    return <Ace {...props}/>
+  }
+  return null;
+}
 
 interface ServerResponse {
   data: APIResponse;
@@ -64,23 +68,20 @@ const Home: NextPage<{ userAgent: string }> = () => {
       </header>
 
       <main>
-        <div className="content">
-          <Editor
-            value={code}
-            onValueChange={tempcode => setCode(tempcode)}
-            highlight={code => highlight(code, Prism.languages.js, "js")}
-            padding={10}
-            style={{
-              fontFamily: '"Fira code", "Fira Mono", monospace',
-              fontSize: 12,
-              height: "100%"
-            }}
+        <div className={style.content}>
+          <AceEditor
+          value={code}
+          width="100%"
+          mode="golang"
+          theme="monokai"
+          onChange={setCode}
+          name="content"
+          editorProps={{ $blockScrolling: true }}
           />
         </div>
-        <div className="console">
-          <p>{apiresponse.errors}</p>
-          <p>{apiresponse.output}</p>
-          <p>{apiresponse.status}</p>
+        <div className={style.console}>
+          <pre className={style.outputerr}>{apiresponse.errors}</pre>
+          <pre className={style.output}>{apiresponse.output}</pre>
         </div>
       </main>
     </>

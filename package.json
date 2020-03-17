@@ -7,15 +7,15 @@
   "author": "James Jarvis <git@jamesjarvis.io>",
   "license": "MIT",
   "dependencies": {
-    "@types/prismjs": "^1.16.0",
+    "@types/ace": "^0.0.43",
     "@zeit/next-sass": "^1.0.1",
+    "ace-builds": "^1.4.8",
     "axios": "^0.19.2",
-    "next": "^9.2.1",
+    "next": "^9.3.0",
     "node-sass": "^4.13.1",
-    "prismjs": "^1.19.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-simple-code-editor": "^0.11.0"
+    "react-ace": "^8.1.0",
+    "react-dom": "^16.12.0"
   },
   "scripts": {
     "dev": "next",

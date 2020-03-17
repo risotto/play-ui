@@ -1,2 +1,4 @@
-# risotto-play-ui
-Website for the Risotto Playground
+# Risotto Play 🍲 (UI)
+
+Website for the Risotto Playground.
+

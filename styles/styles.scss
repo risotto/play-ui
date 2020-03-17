@@ -1,10 +1,5 @@
 body {
     height: 100%;
-
-    header {
-        h1 {
-        }
-    }
     
     main {
         height: 100%;
@@ -17,6 +12,14 @@ body {
         .console {
             height: 25%;
             bottom: 0;
+
+            .outputerr {
+                color: #ff5a5a;
+            }
+
+            .output {
+                color: black;
+            }
         }
     }
 
