@@ -5,8 +5,6 @@ import axios from "axios";
 
 const helloworld = 'println("Hello, world!")\n';
 
-const URL = "https://api.play.risotto.dev";
-
 function AceEditor<P>(props: P) {
   if (typeof window !== 'undefined') {
     const Ace = require('react-ace').default;
@@ -44,7 +42,7 @@ const Home: NextPage<{ userAgent: string }> = () => {
             axios
               .request<APIResponse>({
                 method: "POST",
-                url: `${URL}/compile`,
+                url: `${process.env.playUrl}/compile`,
                 data: code
               })
               .then(response => {
