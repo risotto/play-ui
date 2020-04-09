@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "../styles/styles.scss";
+import { useHotkeys } from "react-hotkeys-hook";
 
 // const helloworld = 'println("Hello, world!")\n';
 const helloworld = `println("Hello, world!")\nfor i:= 1;i<1000;i+=1 {\nprintln("hi")\n}`;
@@ -35,38 +36,40 @@ const Home: NextPage<{ userAgent: string }> = () => {
     output: "",
     status: 0,
   });
+  const compile = () => {
+    axios
+      .request<APIResponse>({
+        method: "POST",
+        url: `${process.env.playUrl}/compile`,
+        data: code,
+      })
+      .then((response) => {
+        const { data } = response;
+        console.log(data);
+        setApiresponse(data);
+      })
+      .catch((error) => {
+        setApiresponse({
+          errors: "well, looks like an issue with the API",
+          output: "",
+          status: -1,
+        });
+        console.log(error);
+      });
+  };
+  useHotkeys("command+enter", compile);
+
   return (
     <div id={style.main} className={style.dark}>
       <header>
         <div className={style.menu}>
-          <span className={style.title}>Risotto Play</span>
-          <button className={style.menuButton}
-            onClick={() => {
-              axios
-                .request<APIResponse>({
-                  method: "POST",
-                  url: `${process.env.playUrl}/compile`,
-                  data: code,
-                })
-                .then((response) => {
-                  const { data } = response;
-                  console.log(data);
-                  setApiresponse(data);
-                })
-                .catch((error) => {
-                  setApiresponse({
-                    errors: "fuckedy fuck",
-                    output: "",
-                    status: -1,
-                  });
-                  console.log(error);
-                });
-            }}
+          <span className={style.title}>Risotto 🍲 Play</span>
+          <button
+            className={style.menuButton}
+            onClick={compile}
           >
             Run
-            <span className={styles.cmd}>
-            ⌘+↵
-            </span>
+            {/* <span className={styles.cmd}>⌘+↵</span> */}
           </button>
         </div>
       </header>
