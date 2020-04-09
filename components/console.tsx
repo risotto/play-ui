@@ -21,7 +21,7 @@ const Console = (response: APIResponse) => {
     }
     return (
         <div>
-            <h3>Successfully compile</h3>
+            <h3>Successfully compiled</h3>
         </div>
     )
 }
