@@ -83,6 +83,8 @@ const Home: NextPage<{ userAgent: string }> = () => {
             mode="golang"
             theme="monokai"
             onChange={setCode}
+            fontSize={14}
+            showPrintMargin={false}
             name="content"
             editorProps={{ $blockScrolling: true }}
           />
