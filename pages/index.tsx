@@ -6,7 +6,7 @@ import styles from "../styles/styles.scss";
 import { useHotkeys } from "react-hotkeys-hook";
 
 // const helloworld = 'println("Hello, world!")\n';
-const helloworld = `println("Hello, world!")\nfor i:= 1;i<1000;i+=1 {\nprintln("hi")\n}`;
+const helloworld = `println("Hello, world!")\n// This is a comment\n\nfunc testFunction(a1 int, a2 int) string {\n\treturn a1 + " " + a2\n}\n\ntesting := true\n\nif testing {\n\tarr := []int{5, 3, 9}\n\tfor i := 0; i < 3; i += 1 {\n\t\tprintln(testFunction(i,arr[i]))\n\t}\n} else {\n\tprintln("not testing")\n}`;
 
 function AceEditor<P>(props: P) {
   if (typeof window !== "undefined") {
@@ -36,7 +36,7 @@ const Home: NextPage<{ userAgent: string }> = () => {
     output: "",
     status: 0,
   });
-  const compile = () => {
+  let compile = () => {
     axios
       .request<APIResponse>({
         method: "POST",
@@ -45,7 +45,6 @@ const Home: NextPage<{ userAgent: string }> = () => {
       })
       .then((response) => {
         const { data } = response;
-        console.log(data);
         setApiresponse(data);
       })
       .catch((error) => {
