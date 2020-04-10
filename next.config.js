@@ -1,11 +1,14 @@
-const withSass = require('@zeit/next-sass');
+const withSass = require("@zeit/next-sass");
 
 module.exports = withSass({
   exportTrailingSlash: true,
   cssModules: true,
-  exportPathMap: function() {
+  exportPathMap: function () {
     return {
-      "/": { page: "/" }
+      "/": { page: "/" },
     };
+  },
+  env: {
+    playUrl: "https://api.play.risotto.dev",
   },
 });
