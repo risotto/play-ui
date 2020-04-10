@@ -1,9 +1,10 @@
-import style from "../styles/styles.scss";
-import { NextPage } from "next";
-import React, { useState } from "react";
 import axios from "axios";
-import { useHotkeys } from "react-hotkeys-hook";
+import { NextPage } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { useHotkeys } from "react-hotkeys-hook";
+import style from "../styles/styles.scss";
 
 // const helloworld = 'println("Hello, world!")\n';
 const helloworld = `println("Hello, world!")\n// This is a comment\n\nfunc testFunction(a1 int, a2 int) string {\n\treturn a1 + " " + a2\n}\n\ntesting := true\n\nif testing {\n\tarr := []int{5, 3, 9}\n\tfor i := 0; i < 3; i += 1 {\n\t\tprintln(testFunction(i,arr[i]))\n\t}\n} else {\n\tprintln("not testing")\n}`;
@@ -30,7 +31,18 @@ interface SuccessResponse {
 type APIResponse = SuccessResponse;
 
 const Home: NextPage<{ userAgent: string }> = () => {
+  const router = useRouter();
   const [code, setCode] = useState(helloworld);
+
+  useEffect(() => {
+    // This sets the shared code
+    if (router.query.code) {
+      let temp: string = router.query.code as string;
+      setCode(atob(temp));
+    }
+  }, [router.query]);
+
+  const [sharetext, setSharetext] = useState("Share");
   const [apiresponse, setApiresponse] = useState<APIResponse>({
     errors: "",
     output: "",
@@ -59,7 +71,11 @@ const Home: NextPage<{ userAgent: string }> = () => {
   useHotkeys("command+enter", compile);
 
   let share = () => {
-    // console.log(btoa(code));
+    navigator.clipboard.writeText(`${process.env.thisUrl}?code=${btoa(code)}`);
+    setSharetext("Copied!");
+    setTimeout(() => {
+      setSharetext("Share");
+    }, 2000);
   };
 
   return (
@@ -96,7 +112,7 @@ const Home: NextPage<{ userAgent: string }> = () => {
             {/* <span className={style.cmd}>⌘+↵</span> */}
           </button>
           <button className={style.menuButton} onClick={share}>
-            Share
+            {sharetext}
             {/* <span className={style.cmd}>⌘+S</span> */}
           </button>
         </div>

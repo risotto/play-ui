@@ -10,5 +10,6 @@ module.exports = withSass({
   },
   env: {
     playUrl: "https://api.play.risotto.dev",
+    thisUrl: "https://play.risotto.dev"
   },
 });
