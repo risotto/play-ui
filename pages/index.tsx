@@ -6,7 +6,6 @@ import React, { useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import style from "../styles/styles.scss";
 
-// const helloworld = 'println("Hello, world!")\n';
 const helloworld = `println("Hello, world!")\n// This is a comment\n\nfunc testFunction(a1 int, a2 int) string {\n\treturn a1 + " " + a2\n}\n\ntesting := true\n\nif testing {\n\tarr := []int{5, 3, 9}\n\tfor i := 0; i < 3; i += 1 {\n\t\tprintln(testFunction(i,arr[i]))\n\t}\n} else {\n\tprintln("not testing")\n}`;
 
 function AceEditor<P>(props: P) {
@@ -109,11 +108,9 @@ const Home: NextPage<{ userAgent: string }> = () => {
           <span className={style.title}>Risotto 🍲 Play</span>
           <button className={style.menuButton} onClick={compile}>
             Run
-            {/* <span className={style.cmd}>⌘+↵</span> */}
           </button>
           <button className={style.menuButton} onClick={share}>
             {sharetext}
-            {/* <span className={style.cmd}>⌘+S</span> */}
           </button>
         </div>
       </header>
